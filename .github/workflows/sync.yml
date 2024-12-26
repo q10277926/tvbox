@@ -33,8 +33,8 @@ jobs:
         run: |
           git checkout --theirs .
           git add .
-          git commit -m "Merge upstream changes and resolve conflicts"
+          git commit -m "Merge upstream changes and resolve conflicts" || echo "No changes to commit"
 
       - name: Push changes
         run: |
-          git push origin master --force
+          git push origin master
