@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Set up Git identity
         run: |
@@ -29,13 +31,10 @@ jobs:
 
       - name: Resolve conflicts (use upstream version)
         run: |
-          git checkout --theirs . # 使用上游仓库的版本
+          git checkout --theirs .
           git add .
-
-      - name: Commit changes
-        run: |
           git commit -m "Merge upstream changes and resolve conflicts"
 
       - name: Push changes
         run: |
-          git push origin master
+          git push origin master --force
